@@ -2,9 +2,9 @@ import matplotlib.pylab as plt
 
 alfa = ' abcdefghijklmnopqrstuvwxyzøæå'
 
-def frequency_analysis(plantText):
+def frequency_analysis(cipherText):
     
-    plantText = plantText.lower()
+    cipherText = cipherText.lower()
     #we are going to use a dictionary to store the letters-frequency pari
     letter_frequency ={}
     #Initialize the dictionary 
@@ -12,7 +12,7 @@ def frequency_analysis(plantText):
         letter_frequency[letter]=0
     
     # Now we cosider the text we want to analyse
-    for letter in plantText:
+    for letter in cipherText:
         # we incrementing the occurence of the given letter
         if (letter in alfa):
             letter_frequency[letter] +=1
@@ -26,7 +26,14 @@ def plot(letter_frequency):
    
     plt.show()
 
+def cracking_ceasar(cipherText):
+    letter_frequency = frequency_analysis(cipherText)
+    print(letter_frequency)
+    plot(letter_frequency)
+
 if __name__ == "__main__":
-    plantText = input("Enter some text\n")
-    freqencies = frequency_analysis(plantText)
-    plot(freqencies)
+    cipherText = input("Enter some text\n")
+    cracking_ceasar(cipherText)
+    
+    #freqencies = frequency_analysis(cipherText)
+    #plot(freqencies)
