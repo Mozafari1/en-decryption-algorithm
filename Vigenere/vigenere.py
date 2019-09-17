@@ -1,4 +1,4 @@
-alfa = ' abcdefghijklmnopqrstuvwxyz'
+alfa = ' abcdefghijklmnopqrstuvwxyz.'
 
 # vigenere algorithm
 #Mathematical formula is:  Ej (mj)  = (mj+kj) mod 26
@@ -45,7 +45,7 @@ def de_vigenere(cipherText, key):
 
 if __name__ =="__main__":
     plainText = input("Enter some text to encrypt\n")
-    encrypt = en_vigenere(plainText, 'CyberSecurity')
+    encrypt = en_vigenere(plainText, 'Lemon')
     print("The encrypted message is: %s" % encrypt)
-    decrypt = de_vigenere(encrypt, 'CyberSecurity')
+    decrypt = de_vigenere(encrypt, 'Lemon')
     print("The Decrypted message is: %s" % decrypt)
