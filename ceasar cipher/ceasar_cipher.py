@@ -1,8 +1,8 @@
 import random
 
-alfa = ' abcdefghijklmnopqrstuvwxyzøæå'
+alfa = ' abcdefghijklmnopqrstuvwxyz'
 
-key = random.randrange(3,10)
+key = random.randrange(3,25)
 
 # def readfile ():
 #     f = open("readme.txt","r")
