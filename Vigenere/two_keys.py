@@ -1,5 +1,7 @@
+
+
 #alfa = ' abcdefghijklmnopqrstuvwxyz.'
-alfa  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+alfa  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ. '
 # vigenere algorithm
 #Mathematical formula is:  Ci (mi)  =(mi+ki) mod 28
 # mod is  28 with space and .
@@ -93,16 +95,18 @@ def de_vigenere_key_2(cipherText_2, key_2):
 
 
 if __name__ =="__main__":
-    plainText = input("Enter some text to encrypt\n")
-    encrypt = en_vigenere_key_1(plainText, 'Green')
+    plainText = input("Enter some text to encrypt:\n")
+    Key_1 = input("Enter the the first Key:\n")
+    encrypt = en_vigenere_key_1(plainText, Key_1)
     print("The encrypted message with the first is: %s" % encrypt)
-    encrypt_key_2 = en_vigenere_key_2(encrypt,'Watermelon')
+    Key_2 = input("Enter the second Key:\n")
+    encrypt_key_2 = en_vigenere_key_2(encrypt,Key_2)
     print("Ecrypted text with the second key is: %s" %encrypt_key_2)
 
 
 
-    decrypt_key_2 = de_vigenere_key_2(encrypt_key_2,'Green')
+    decrypt_key_2 = de_vigenere_key_2(encrypt_key_2,Key_2)
     print("Decrypted text with the second key  is: %s" %decrypt_key_2)
-    decrypt = de_vigenere_key_1(decrypt_key_2, 'ABC')
+    decrypt = de_vigenere_key_1(decrypt_key_2, Key_1)
     print("The Decrypted message with the first key is: %s" % decrypt)
 

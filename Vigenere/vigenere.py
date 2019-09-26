@@ -46,8 +46,8 @@ def de_vigenere(cipherText, key):
 
 if __name__ =="__main__":
     plainText = input("Enter some text to encrypt\n")
-    encrypt = en_vigenere(plainText, 'WATERMELON')
+    encrypt = en_vigenere(plainText, 'Watermelon')
     print("The encrypted message is: %s" % encrypt)
-    decrypt = de_vigenere(encrypt, 'WATERMELON')
+    decrypt = de_vigenere(encrypt, 'watermelon')
     print("The Decrypted message is: %s" % decrypt)
 
