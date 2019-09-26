@@ -46,8 +46,15 @@ def de_vigenere(cipherText, key):
 
 if __name__ =="__main__":
     plainText = input("Enter some text to encrypt\n")
-    encrypt = en_vigenere(plainText, 'Watermelon')
-    print("The encrypted message is: %s" % encrypt)
-    decrypt = de_vigenere(encrypt, 'watermelon')
-    print("The Decrypted message is: %s" % decrypt)
+    key_1  =    input("Enter the first key:\n")
+    encrypt1 = en_vigenere(plainText, key_1)         # Calling the Encrypting function to encrypt the message with the key 1 
+    print("The encrypted message with key 1 is: %s" % encrypt1)
+    key_2 =     input("Enter the second key:\n")
+    encrypt2 = en_vigenere(encrypt1, key_2)          # Encrypting the message with the help of key 2. Calling the same function as I call when I encrypting the message with help of the key 1
+    print("The encrypted message wwith the key 2 is: %s" % encrypt2)
+
+    decrypt2 = de_vigenere(encrypt2, key_2)            # Decrypting the message to call the decrypting function, but first I decrypting the text with help of the second to get the encrypt1 text, then I decrypting the encrypt1 to get the plain text
+    print("Decrypted message with the key 2 is: %s" % decrypt2)
+    decrypt1 = de_vigenere(decrypt2, key_1)
+    print("The Decrypted message with the key 1 is: %s" % decrypt1)
 
