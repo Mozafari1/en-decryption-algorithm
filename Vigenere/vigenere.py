@@ -1,12 +1,13 @@
-alfa = ' abcdefghijklmnopqrstuvwxyz.'
-
+#alfa = ' abcdefghijklmnopqrstuvwxyz.'
+alfa  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ. '
 # vigenere algorithm
-#Mathematical formula is:  Ej (mj)  = (mj+kj) mod 26
+#Mathematical formula is:  Ci (mi)  =(mi+ki) mod 28
+# mod is  28 with space and .
 
 def en_vigenere(plainText,key):
     #the text we want to encrypt
-    plainText = plainText.lower()
-    key = key.lower()
+    plainText = plainText.upper()
+    key = key.upper()
     cipherText = ''
     # repesenting the key index as far as key is concerned
     indexKey = 0
@@ -26,10 +27,10 @@ def en_vigenere(plainText,key):
 
 # Now I'm going to decrypt and using the following formula
 # The number og shifts is equal to the index  of the char in the alfabet  and minus index of the char in the key
-#Mathematical formula is:  Dj (mj)  = (mj-kj) mod 26
+#Mathematical formula is:  Di (mi)  = (mi-ki) mod 28
 def de_vigenere(cipherText, key):
-    cipherText = cipherText.lower()
-    key = key.lower()
+    cipherText = cipherText.upper()
+    key = key.upper()
     plainText = ''
     indexKey = 0
 
@@ -45,7 +46,8 @@ def de_vigenere(cipherText, key):
 
 if __name__ =="__main__":
     plainText = input("Enter some text to encrypt\n")
-    encrypt = en_vigenere(plainText, 'Lemon')
+    encrypt = en_vigenere(plainText, 'WATERMELON')
     print("The encrypted message is: %s" % encrypt)
-    decrypt = de_vigenere(encrypt, 'Lemon')
+    decrypt = de_vigenere(encrypt, 'WATERMELON')
     print("The Decrypted message is: %s" % decrypt)
+
