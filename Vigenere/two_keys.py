@@ -1,112 +1,63 @@
 
 
-#alfa = ' abcdefghijklmnopqrstuvwxyz.'
-alfa  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ. '
+    ###################                 This is a simple vigenere cipher to en-decrypt text
+
+alfa = 'abcdefghijklmnopqrstuvwxyz'
+#alfa  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ. '
 # vigenere algorithm
 #Mathematical formula is:  Ci (mi)  =(mi+ki) mod 28
 # mod is  28 with space and .
 
-def en_vigenere_key_1(plainText,key_1):
+def en_vigenere(plainText,key):
     #the text we want to encrypt
-    plainText = plainText.upper()
-    key_1 = key_1.upper()
-
-
+    plainText = plainText.lower()
+    key = key.lower()
     cipherText = ''
     # repesenting the key index as far as key is concerned
     indexKey = 0
     # now we are going to concider all characters in plainText
     for char in plainText:
         #The number of shifts is equal to the index of the char in the alfabet and plus index of the char in the private key
-        index = (alfa.find(char) + (alfa.find(key_1[indexKey]))) % len (alfa) # this is the mathematical operation
+        index = (alfa.find(char) + (alfa.find(key[indexKey]))) % len (alfa) # this is the mathematical operation
         # adding the encrypted char to the cipherText
         cipherText = cipherText +alfa[index]
         # Now I'm concider the next letter and need to increment the key index 
         indexKey = indexKey + 1
 
         # we need to start agin when we have concidered the last letter of key
-        if indexKey == len(key_1):
+        if indexKey == len(key):
             indexKey =0
     return cipherText
 
 # Now I'm going to decrypt and using the following formula
 # The number og shifts is equal to the index  of the char in the alfabet  and minus index of the char in the key
 #Mathematical formula is:  Di (mi)  = (mi-ki) mod 28
-def de_vigenere_key_1(cipherText, key_1):
-    cipherText = cipherText.upper()
-    key_1 = key_1.upper()
+def de_vigenere(cipherText, key):
+    cipherText = cipherText.lower()
+    key = key.lower()
     plainText = ''
     indexKey = 0
 
     for char in cipherText:
-        index = (alfa.find(char) - (alfa.find(key_1[indexKey]))) % len(alfa)
+        index = (alfa.find(char) - (alfa.find(key[indexKey]))) % len(alfa)
         plainText  = plainText + alfa[index]
 
         indexKey = indexKey +1
-        if indexKey ==len(key_1):
+        if indexKey ==len(key):
             indexKey =0
 
     return plainText
-
-
-# Encrypting agin with with the second key = WATERMELON
-
-def en_vigenere_key_2(encrypted_text_with_key_1,key_2):
-    #the text we want to encrypt
-    encrypted_text_with_key_1 = encrypted_text_with_key_1.upper()
-    key_2 = key_2.upper()
-
-
-    cipherText = ''
-    # repesenting the key index as far as key is concerned
-    indexKey = 0
-    # now we are going to concider all characters in plainText
-    for char in encrypted_text_with_key_1:
-        #The number of shifts is equal to the index of the char in the alfabet and plus index of the char in the private key
-        index = (alfa.find(char) + (alfa.find(key_2[indexKey]))) % len (alfa) # this is the mathematical operation
-        # adding the encrypted char to the cipherText
-        cipherText = cipherText +alfa[index]
-        # Now I'm concider the next letter and need to increment the key index 
-        indexKey = indexKey + 1
-
-        # we need to start agin when we have concidered the last letter of key
-        if indexKey == len(key_2):
-            indexKey =0
-    return cipherText
-
-# Now I'm going to decrypt and using the following formula
-# The number og shifts is equal to the index  of the char in the alfabet  and minus index of the char in the key
-#Mathematical formula is:  Di (mi)  = (mi-ki) mod 28
-def de_vigenere_key_2(cipherText_2, key_2):
-    cipherText_2 = cipherText_2.upper()
-    key_2 = key_2.upper()
-    plainText = ''
-    indexKey = 0
-
-    for char in cipherText_2:
-        index = (alfa.find(char) - (alfa.find(key_2[indexKey]))) % len(alfa)
-        plainText  = plainText + alfa[index]
-
-        indexKey = indexKey +1
-        if indexKey ==len(key_2):
-            indexKey =0
-
-    return plainText
-
 
 if __name__ =="__main__":
-    plainText = input("Enter some text to encrypt:\n")
-    Key_1 = input("Enter the the first Key:\n")
-    encrypt = en_vigenere_key_1(plainText, Key_1)
-    print("The encrypted message with the first is: %s" % encrypt)
-    Key_2 = input("Enter the second Key:\n")
-    encrypt_key_2 = en_vigenere_key_2(encrypt,Key_2)
-    print("Ecrypted text with the second key is: %s" %encrypt_key_2)
+    plainText = input("Enter some text to encrypt\n")
+    key_1  =    input("Enter the first key:\n")
+    encrypt1 = en_vigenere(plainText, key_1)         # Calling the Encrypting function to encrypt the message with the key 1 
+    print("The encrypted message with key 1 is: %s" % encrypt1)
+    key_2 =     input("Enter the second key:\n")
+    encrypt2 = en_vigenere(encrypt1, key_2)          # Encrypting the message with the help of key 2. Calling the same function as I call when I encrypting the message with help of the key 1
+    print("The encrypted message wwith the key 2 is: %s" % encrypt2)
 
-
-
-    decrypt_key_2 = de_vigenere_key_2(encrypt_key_2,Key_2)
-    print("Decrypted text with the second key  is: %s" %decrypt_key_2)
-    decrypt = de_vigenere_key_1(decrypt_key_2, Key_1)
-    print("The Decrypted message with the first key is: %s" % decrypt)
-
+    decrypt2 = de_vigenere(encrypt2, key_2)            # Decrypting the message to call the decrypting function, but first I decrypting the text with help of the second to get the encrypt1 text, then I decrypting the encrypt1 to get the plain text
+    print("Decrypted message with the key 2 is: %s" % decrypt2)
+    decrypt1 = de_vigenere(decrypt2, key_1)
+    print("The Decrypted message with the key 1 is: %s" % decrypt1)

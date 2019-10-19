@@ -1,13 +1,12 @@
-#alfa = ' abcdefghijklmnopqrstuvwxyz.'
-alfa  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ. '
+alfa = ' abcdefghijklmnopqrstuvwxyz.'
+
 # vigenere algorithm
-#Mathematical formula is:  Ci (mi)  =(mi+ki) mod 28
-# mod is  28 with space and .
+#Mathematical formula is:  Ej (mj)  = (mj+kj) mod 26
 
 def en_vigenere(plainText,key):
     #the text we want to encrypt
-    plainText = plainText.upper()
-    key = key.upper()
+    plainText = plainText.lower()
+    key = key.lower()
     cipherText = ''
     # repesenting the key index as far as key is concerned
     indexKey = 0
@@ -27,10 +26,10 @@ def en_vigenere(plainText,key):
 
 # Now I'm going to decrypt and using the following formula
 # The number og shifts is equal to the index  of the char in the alfabet  and minus index of the char in the key
-#Mathematical formula is:  Di (mi)  = (mi-ki) mod 28
+#Mathematical formula is:  Dj (mj)  = (mj-kj) mod 26
 def de_vigenere(cipherText, key):
-    cipherText = cipherText.upper()
-    key = key.upper()
+    cipherText = cipherText.lower()
+    key = key.lower()
     plainText = ''
     indexKey = 0
 
@@ -46,15 +45,9 @@ def de_vigenere(cipherText, key):
 
 if __name__ =="__main__":
     plainText = input("Enter some text to encrypt\n")
-    key_1  =    input("Enter the first key:\n")
-    encrypt1 = en_vigenere(plainText, key_1)         # Calling the Encrypting function to encrypt the message with the key 1 
-    print("The encrypted message with key 1 is: %s" % encrypt1)
-    key_2 =     input("Enter the second key:\n")
-    encrypt2 = en_vigenere(encrypt1, key_2)          # Encrypting the message with the help of key 2. Calling the same function as I call when I encrypting the message with help of the key 1
-    print("The encrypted message wwith the key 2 is: %s" % encrypt2)
+    encrypt = en_vigenere(plainText, 'Lemon')
+    print("The encrypted message is: %s" % encrypt)
+    decrypt = de_vigenere(encrypt, 'Lemon')
+    print("The Decrypted message is: %s" % decrypt)
 
-    decrypt2 = de_vigenere(encrypt2, key_2)            # Decrypting the message to call the decrypting function, but first I decrypting the text with help of the second to get the encrypt1 text, then I decrypting the encrypt1 to get the plain text
-    print("Decrypted message with the key 2 is: %s" % decrypt2)
-    decrypt1 = de_vigenere(decrypt2, key_1)
-    print("The Decrypted message with the key 1 is: %s" % decrypt1)
 
